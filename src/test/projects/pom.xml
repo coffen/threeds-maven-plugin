@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ouer.threeds</groupId>
+    <artifactId>threeds-plugin-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>This is for plugin test</name>
+    <packaging>threeds-plugin-app</packaging>
+
+    <build>
+        <plugins>
+            <plugin>
+				<groupId>com.ouer.threeds</groupId>
+				<artifactId>threeds-plugin</artifactId>
+				<version>1.0.0</version>
+				<extensions>true</extensions>
+                <configuration>
+                	<project implementation="com.ouer.threeds.plugintest.ThreedsTestMavenProjectStub" />
+                    <pkg>com.ouer.threeds.bos.controller.test</pkg>
+                    <contextPath>localhost:8080</contextPath>
+                    <needFolder>true</needFolder>
+                    <ignoreDeprecated>true</ignoreDeprecated>
+                    <analogLength>3</analogLength>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
