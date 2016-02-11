@@ -19,20 +19,20 @@ import com.ouer.threeds.plugin.mojo.postman.exception.IncompatibleTypeException;
 
 /**
  * <p>
- * Project Name: 火鸟淘宝开放服务模拟系统
+ * Project Name: 买到手抽筋
  * <br>
- * Description: 域模型实例生产器
+ * Description: 域对象类构造器
  * <br>
  * File Name: DomainBuilder.java
  * <br>
- * Copyright: Copyright (C) 2014 All Rights Reserved.
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
  * <br>
- * Company: 杭州清柳科技有限公司
+ * Company: 杭州偶尔科技有限公司
  * <br>
- * @author 李可夫
- * @create time：2014-11-17 23:38:26
+ * @author 穷奇
+ * @create time：2016-02-11 20:16:12 
  * @version: v1.0
- * 
+ *
  */
 public class DomainBuilder extends AbstractBuilder {
 	
@@ -51,6 +51,7 @@ public class DomainBuilder extends AbstractBuilder {
 			return findBuilder("enum").build(clazz, key);
 		}
 		
+		// 首先找寻此类是否有特定的构造器（以类缩写名注册），如果查找不到再使用Domain构造器
 		Builder designated = findBuilder(clazz.getSimpleName());
 		if (designated != null) {
 			return designated.build(clazz, key);
@@ -78,6 +79,16 @@ public class DomainBuilder extends AbstractBuilder {
 		return dataList;
 	}
 	
+	/**
+	 * 递归调用构造类变量的Data，每进入下一级应当以当前key值作为下一级的基本路径
+	 * <br>
+	 * 例：Class A包含B变量（变量名b），Class B包含C变量（变量名c），如果A的key为a，则c的key为a.b.c
+	 * 
+	 * @param field 类变量
+	 * @param key	当前层级的key值
+	 * @return
+	 * @throws IncompatibleTypeException
+	 */
 	private List<Data> buildField(Field field, String key) throws IncompatibleTypeException {
 		List<Data> list = new ArrayList<Data>();
 		Class<?> type = field.getType();

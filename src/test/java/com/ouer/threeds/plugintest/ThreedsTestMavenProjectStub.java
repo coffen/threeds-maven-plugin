@@ -19,6 +19,23 @@ import org.apache.maven.model.Resource;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 
+/**
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: 测试用MavenProject
+ * <br>
+ * File Name: ThreedsTestMavenProjectStub.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
+ * @author 穷奇
+ * @create time：2016-02-11 20:50:09 
+ * @version: v1.0
+ *
+ */
 public class ThreedsTestMavenProjectStub extends MavenProjectStub {
 
 	private Build build;

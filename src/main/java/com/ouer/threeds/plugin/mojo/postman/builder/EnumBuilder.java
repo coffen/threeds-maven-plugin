@@ -11,12 +11,10 @@ public class EnumBuilder extends AbstractBuilder {
 	
 	public final static String ALIAS = "enum";
 	
-	@Override
 	public void register() {
 		// do nothing
 	}
 
-	@Override
 	public List<Data> build(Class<?> clazz, String key) throws IncompatibleTypeException {
 		if (clazz == null || !clazz.isEnum()) {
 			throw new IncompatibleTypeException("null");

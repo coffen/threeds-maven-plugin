@@ -5,6 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: 接口Bean
+ * <br>
+ * File Name: Request.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
+ * @author 穷奇
+ * @create time：2016-02-11 19:45:55 
+ * @version: v1.0
+ *
+ */
 public class Request extends BaseBean {
 	
 	public final static String REQUEST_METHOD_GET = "GET";
@@ -17,25 +34,25 @@ public class Request extends BaseBean {
 	
 	public final static String REQUEST_CURRENTHELPER = "normal";
 	
-	private String collectionId;
-	private String folder;
+	private String collectionId;		// 集合Id
+	private String folder;				// 目录Id
 	
-	private String currentHelper;
-	private String dataMode;	
-	private String descriptionFormat;
-	private String headers;
-	private String method;	
-	private String preRequestScript;
-	private String rawModeData;
-	private String test;
-	private Long time;
-	private String url;
-	private String version;
+	private String currentHelper;		// ?
+	private String dataMode;			// 请求数据类型
+	private String descriptionFormat;	// 描述格式
+	private String headers;				// 请求头（未处理）
+	private String method;				// 请求方式
+	private String preRequestScript;	// 预处理脚本（Javascript）
+	private String rawModeData;			// 未经处理数据
+	private String test;				// 测试脚本（Javascript）
+	private Long time;					// 创建时间
+	private String url;					// 请求路径
+	private String version;				// 版本
 
-	private Object helperAttributes;
-	private List<Data> data = new ArrayList<Data>();
-	private List<Response> responses = new ArrayList<Response>();
-	private Map<String, String> pathVariables = new HashMap<String, String>();
+	private Object helperAttributes;	// ?
+	private List<Data> data = new ArrayList<Data>();							// 参数
+	private List<Response> responses = new ArrayList<Response>();				// 应答
+	private Map<String, String> pathVariables = new HashMap<String, String>();	// 动态参数
 	
 	public String getCollectionId() {
 		return collectionId;

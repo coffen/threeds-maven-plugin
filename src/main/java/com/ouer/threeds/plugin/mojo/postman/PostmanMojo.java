@@ -27,11 +27,21 @@ import com.ouer.threeds.plugin.ResourceFilter;
 import com.ouer.threeds.plugin.bean.postman.Collection;
 
 /**
- * @Description: 用于生成基于Springmvc（3.0以上）的postman测试脚本
- *
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: 用于生成基于Springmvc（3.0以上）的postman测试脚本
+ * <br>
+ * File Name: PostmanMojo.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
  * @author 穷奇
- * @date 2016-01-25 09:48:12 
- * @version V2.0
+ * @create time：2016-02-11 20:46:32 
+ * @version: v1.0
+ *
  */
 @Mojo(name = "postman", requiresProject = true, requiresDependencyResolution = ResolutionScope.RUNTIME)
 @Execute(phase = LifecyclePhase.TEST)
@@ -40,19 +50,19 @@ public class PostmanMojo extends ProjectDependencyRequiredPluginMojo {
 	public final static Pattern PKG_REGEX = Pattern.compile("[a-zA-Z_]\\w*(\\.[a-zA-Z_]\\w*)*");
 	
 	@Parameter(property = "pkg", required = true)
-	private String pkg;
+	private String pkg;	// 接口类包名
 	
 	@Parameter(property = "contextPath", required = true)
-	private String contextPath;
+	private String contextPath;	// 测试服务URL，默认：localhost
 	
 	@Parameter(property = "needFolder", defaultValue = "true")
-	private Boolean needFolder;
+	private Boolean needFolder;	// 是否构建目录，默认：是
 	
 	@Parameter(property = "ignoreDeprecated", defaultValue = "true")
-	private Boolean ignoreDeprecated;
+	private Boolean ignoreDeprecated;	// 是否忽略有@Deprecated注解的类或方法，默认：是
 	
 	@Parameter(property = "analogLength", defaultValue = "3")
-	private Integer analogLength;
+	private Integer analogLength;		// 数组模拟次数，默认：3
 	
 	private static ResourceFilter clazzFilter = new ResourceFilter("class");
 		

@@ -18,6 +18,23 @@ import com.ouer.threeds.plugin.bean.postman.Folder;
 import com.ouer.threeds.plugin.bean.postman.Request;
 import com.ouer.threeds.plugin.mojo.postman.builder.DefaultBuilder;
 
+/**
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: Postman脚本构造引擎
+ * <br>
+ * File Name: PostmanEngine.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
+ * @author 穷奇
+ * @create time：2016-02-11 20:34:56 
+ * @version: v1.0
+ *
+ */
 public class PostmanEngine {
 	
 	private PostmanMojoContext mojoContext;
@@ -49,6 +66,7 @@ public class PostmanEngine {
 		return c;
 	}
 	
+	// 初始化构造器
 	private void initBuilder(MojoContext ctx) {
 		if (ctx == null) {
 			return;
@@ -62,6 +80,13 @@ public class PostmanEngine {
 		
 	}
 	
+	/**
+	 * 加载指定包名内实现Controller或RestController的类，解析获取请求及其参数列表
+	 * 
+	 * @param list				接口类列表
+	 * @param requestMapping	请求集合
+	 * @param duplicateRequest	多路径的请求集合（部分接口方法有多个请求路径）
+	 */
 	private void accumulate(List<String> list, Map<String, Map<String, Class<?>>> requestMapping, Map<String, String[]> duplicateRequest) {
 		if (list == null || list.size() == 0 || requestMapping == null || duplicateRequest == null) {
 			return;
@@ -87,6 +112,7 @@ public class PostmanEngine {
 		}
 	}
 	
+	// 创建集合
 	private Collection buildCollection() {
 		Collection collection = new Collection();
 		collection.setId(UUID.randomUUID().toString());
@@ -98,6 +124,7 @@ public class PostmanEngine {
 		return collection;
 	}
 	
+	// 创建目录，以请求路径的第一节（即“/”符号分隔的多节）作为目录名称
 	private Map<String, Folder> buildFolders(Map<String, String[]> duplicateRequest) {
 		Map<String, Folder> folders = new HashMap<String, Folder>();
 		Object needFolder = mojoContext.getConfig("needFolder");
@@ -119,6 +146,7 @@ public class PostmanEngine {
 		return folders;
 	}
 	
+	// 创建请求
 	private void buildRequests(Map<String, Map<String, Class<?>>> requestMapping, Map<String, String[]> duplicateRequest, Collection collection, Map<String, Folder> folders) {
 		if (collection == null || requestMapping == null || requestMapping.size() == 0) {
 			return;
@@ -160,6 +188,7 @@ public class PostmanEngine {
 		}
 	}
 	
+	// 构造请求参数
 	private void buildDatas(Map<String, Class<?>> paramsMapping, Request request) {
 		if (request == null || paramsMapping == null || paramsMapping.size() == 0) {
 			return;

@@ -22,6 +22,11 @@ public class ArrayBuilder extends AbstractBuilder {
 		// do nothing		
 	}
 	
+	/**
+	 * 设置数组模拟次数
+	 * 
+	 * @param count
+	 */
 	protected void setSimulateCount(int count) {
 		simulateCount = count < 1 ? DEFAULT_SIMULATE_COUNT : count;
 	}
@@ -36,12 +41,21 @@ public class ArrayBuilder extends AbstractBuilder {
 		else {
 			List<Data> list = new ArrayList<Data>();
 			for (int i = 0; i < simulateCount; i++) {
+				// Domain数组，需要为key增加[?]索引
 				list.addAll(findBuilder("domain").build(clazz, buildArrayIndex(key, i)));
 			}
 			return list;
 		}
 	}
 	
+	/**
+	 * 基本类型的数组不需要多个Data，其格式：xxx,xxx,xxx
+	 * 
+	 * @param clazz	类
+	 * @param key	参数名
+	 * @return
+	 * @throws IncompatibleTypeException
+	 */
 	private List<Data> buildPrimitiveArray(Class<?> clazz, String key) throws IncompatibleTypeException {
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < simulateCount; i++) {

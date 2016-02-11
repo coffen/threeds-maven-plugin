@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,7 +20,23 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller
+/**
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: Springmvc模型，封装Springmvc的请求数据类型
+ * <br>
+ * File Name: SpringmvcModule.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
+ * @author 穷奇
+ * @create time：2016-02-11 20:46:58 
+ * @version: v1.0
+ *
+ */
 public class SpringmvcModule {
 	
 	private final Class<?> clazz;

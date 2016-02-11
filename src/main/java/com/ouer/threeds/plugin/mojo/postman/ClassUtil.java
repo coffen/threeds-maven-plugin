@@ -4,6 +4,23 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * <p>
+ * Project Name: 买到手抽筋
+ * <br>
+ * Description: Class工具类
+ * <br>
+ * File Name: ClassUtil.java
+ * <br>
+ * Copyright: Copyright (C) 2015 All Rights Reserved.
+ * <br>
+ * Company: 杭州偶尔科技有限公司
+ * <br>
+ * @author 穷奇
+ * @create time：2016-02-11 20:34:30 
+ * @version: v1.0
+ *
+ */
 public class ClassUtil {
 	
 	public static boolean isPrimitiveType(Class<?> clazz) {
