@@ -171,7 +171,8 @@ public class PostmanMojo extends ProjectDependencyRequiredPluginMojo {
 					if (file.isDirectory()) {
 						File[] subFiles = file.listFiles(clazzFilter);
 						for (File sub : subFiles) {
-							list.addAll(scanClassFileSystem(pkg, sub));
+							String _pkg = sub.isDirectory() ? pkg + "." + sub.getName() : pkg;
+							list.addAll(scanClassFileSystem(_pkg, sub));
 						}
 					}
 					else {

@@ -35,7 +35,13 @@ public class ResourceFilter implements FilenameFilter {
 	}
 
 	public boolean accept(File dir, String name) {
-		return StringUtils.isBlank(name) || StringUtils.isBlank(type) ? false : name.toLowerCase().endsWith("." + type.toLowerCase());
+		if (StringUtils.isBlank(name)) {
+			return true;
+		}
+		if (new File(dir, name).isDirectory()) {
+			return true;
+		}
+		return StringUtils.isBlank(type) ? false : name.toLowerCase().endsWith("." + type.toLowerCase());
 	}
 
 }
