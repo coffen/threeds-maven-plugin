@@ -16,8 +16,8 @@
 				<version>1.0.0</version>
 				<extensions>true</extensions>
                 <configuration>
-                	<project implementation="com.ouer.threeds.plugintest.ThreedsTestMavenProjectStub" />
-                    <pkg>com.ouer.threeds.bos.controller.test</pkg>
+                	<project implementation="com.ouer.threeds.plugintest.QFTestMavenProjectStub" />
+                    <pkg>com.qf.product.restapi.controller</pkg>
                     <contextPath>localhost:8080</contextPath>
                     <needFolder>true</needFolder>
                     <ignoreDeprecated>true</ignoreDeprecated>

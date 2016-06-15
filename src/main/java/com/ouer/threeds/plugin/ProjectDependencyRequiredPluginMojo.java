@@ -3,6 +3,7 @@ package com.ouer.threeds.plugin;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
@@ -38,6 +39,9 @@ public abstract class ProjectDependencyRequiredPluginMojo extends AbstractMojo {
 		if (projectLoader == null) {
 			try {
 				List<String> classpathElements = project.getCompileClasspathElements();
+				if (classpathElements == null) {
+					classpathElements = new ArrayList<String>();
+				}
 				classpathElements.add(project.getBuild().getOutputDirectory());
 				classpathElements.add(project.getBuild().getTestOutputDirectory());
 				URL urls[] = new URL[classpathElements.size()];
