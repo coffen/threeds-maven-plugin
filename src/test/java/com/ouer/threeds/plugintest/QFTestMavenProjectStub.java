@@ -2,6 +2,7 @@ package com.ouer.threeds.plugintest;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FilenameFilter;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
@@ -18,6 +19,8 @@ import org.apache.maven.model.Repository;
 import org.apache.maven.model.Resource;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
+
+import com.ouer.threeds.plugin.ResourceFilter;
 
 /**
  * <p>
@@ -91,6 +94,18 @@ public class QFTestMavenProjectStub extends MavenProjectStub {
     }
     
     public void buildCompileSourceRoot() {
+    	String libFile = getBuild().getDirectory() + "\\" + getModel().getArtifactId() + "-" + (getModel().getVersion() == null ? getModel().getParent().getVersion() : getModel().getVersion()) + "\\WEB-INF\\lib";
+    	File f = new File(libFile);
+    	if (f != null && f.exists()) {
+    		File[] libs = f.listFiles(new ResourceFilter("jar"));
+    		if (libs != null && libs.length > 0) {
+    			for (File lib : libs) {
+        			addCompileSourceRoot(lib.getAbsolutePath());
+    			}
+    		}
+    	}
+    	
+    	
     	// addCompileSourceRoot(new File(testRoot, "src/main/java").getAbsolutePath());
     }
 
