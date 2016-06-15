@@ -11,6 +11,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.version>3.3.3</maven.version>
@@ -143,6 +144,16 @@
 					<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
 				</configuration>
 			</plugin>
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId> 
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.3</version> 
+	            <configuration> 
+	                <source>${java.version}</source> 
+	                <target>${java.version}</target> 
+	                <encoding>UTF8</encoding> 
+	            </configuration> 
+         	</plugin>
 		</plugins>
 	</build>
 
