@@ -1,7 +1,7 @@
 package com.ouer.threeds.plugin.mojo.postman;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -155,23 +155,31 @@ public class SpringmvcModule {
 	private Map<String, Class<?>> getParameterFromMethod(Method method) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
         String[] paramNames = paramDiscoverer.getParameterNames(method);
-        Parameter[] paramObjs = method.getParameters();
+        Class<?>[] paramObjs = method.getParameterTypes();
+        Annotation[][] annoMapping = method.getParameterAnnotations();
+        Annotation[] annoArr = null;
         String param = null;
         outer:
         for (int i = 0; i < paramObjs.length; i++) {
         	for (Class<?> clazz : excludeClazzList) {
-        		if (clazz.isAssignableFrom(paramObjs[i].getType())) {
+        		if (clazz.isAssignableFrom(paramObjs[i])) {
         			continue outer;
         		}
         	}
         	param = paramNames[i];
-        	if (paramObjs[i].isAnnotationPresent(RequestParam.class)) {
-        		RequestParam rp = paramObjs[i].getAnnotation(RequestParam.class);
-        		if (StringUtils.isNotBlank(rp.value())) {
-        			param = rp.value();
+        	annoArr = annoMapping[i];
+        	if (annoArr != null && annoArr.length > 0) {
+        		for (Annotation anno : annoArr) {
+        			if (anno instanceof RequestParam) {
+                		RequestParam rp = (RequestParam)anno;
+                		if (StringUtils.isNotBlank(rp.value())) {
+                			param = rp.value();
+                		}
+                		break;
+        			}
         		}
         	}
-        	map.put(param, paramObjs[i].getType());
+        	map.put(param, paramObjs[i]);
         }
         return map;
 	}

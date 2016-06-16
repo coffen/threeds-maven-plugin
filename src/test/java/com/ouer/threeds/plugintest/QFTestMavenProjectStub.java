@@ -2,7 +2,6 @@ package com.ouer.threeds.plugintest;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
