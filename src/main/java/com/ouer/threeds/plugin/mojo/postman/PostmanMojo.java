@@ -115,6 +115,10 @@ public class PostmanMojo extends ProjectDependencyRequiredPluginMojo {
 		PostmanEngine engine = new PostmanEngine(buildMojoContext());
 		try {
 			Collection c = engine.build(buildMojoContext(), clazzList);
+			if (c == null) {
+				getLog().error("构建Controller列表为空, 构建失败");
+				return;
+			}
 			File output = new File(project.getBuild().getDirectory() + "/" + c.getName() + ".json.postman_collection");
 			FileWriter writer = new FileWriter(output);
 			JSON.writeJSONStringTo(c, writer, SerializerFeature.PrettyFormat);
