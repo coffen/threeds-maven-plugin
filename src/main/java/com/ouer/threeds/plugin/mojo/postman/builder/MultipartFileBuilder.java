@@ -52,6 +52,7 @@ public class MultipartFileBuilder extends AbstractBuilder {
 		while (m.find()) {
 			m.appendReplacement(sb, "");
 		}
+		m.appendTail(sb);
 		return sb.toString();
 	}
 	
