@@ -52,7 +52,12 @@ public class DefaultBuilder extends AbstractBuilder {
 			list = findBuilder("enum").build(clazz, key);
 		}
 		else {
-			list = findBuilder("domain").build(clazz, null);
+			if (MultipartFile.class.isAssignableFrom(clazz)) {
+				list = findBuilder("MultipartFile").build(clazz, key);
+			}
+			else {
+				list = findBuilder("domain").build(clazz, null);
+			}
 		}
 		return list;
 	}
